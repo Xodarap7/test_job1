@@ -1,12 +1,14 @@
 // подключение express
 const express = require("express");
 const multer = require("multer");
+// const { getObjects } = require("./js/readFile.js");
+
 
 // создаем объект приложения
 const app = express();
 ///Внешние файлы
 const readUserFile = require("./js/readFile.js");
-
+// let allFigureObjects = readUserFile.allFigureObjects;
 
 
 const storageConfig = multer.diskStorage({
@@ -35,7 +37,11 @@ app.post("/upload", function(req, res, next) {
     else
         res.send("Файл загружен");
 })
-readUserFile.getObjects();
+const allFigureObjects = readUserFile.getObjects();
+
+console.log(allFigureObjects);
+
+
 
 
 // начинаем прослушивать подключения на 3000 порту

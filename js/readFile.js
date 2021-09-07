@@ -8,6 +8,7 @@
 
 const fs = require('fs');
 const figureClass = require("./figureClasses");
+let allFigureObjects = [];
 
 module.exports = {
 
@@ -22,9 +23,8 @@ module.exports = {
     getObjects: function() {
         const sepParagraph = "\r\n";
         const sepSpace = " ";
-        let allFigureObjects = [];
         let fileContent = fs.readFileSync('./uploads/figurefile.txt').toString();
-        console.log(fileContent);
+        // console.log(fileContent);
         const arrayOfParagraph = fileContent.split(sepParagraph);
         /**
          * Цикл, создающий объекты фигур на основе параметра с индексом 3
@@ -50,23 +50,38 @@ module.exports = {
                         allFigureObjects.push(regularTriangle);
                         break;
                     }
-                case 21:
+                case "21":
                     {
-
+                        let rightTriangle = new figureClass.RightTriangle(arrayOfParam[4], arrayOfParam[5],
+                            arrayOfParam[0], arrayOfParam[1], arrayOfParam[2],
+                            (`rgb(${arrayOfParam[7]},${arrayOfParam[8]},${arrayOfParam[9]});`),
+                            (`rgb(${arrayOfParam[10]},${arrayOfParam[11]},${arrayOfParam[12]});`));
+                        allFigureObjects.push(rightTriangle);
+                        break;
                     }
-                case 30:
+                case "30":
                     {
-
+                        let circle = new figureClass.Circle(arrayOfParam[4],
+                            arrayOfParam[0], arrayOfParam[1],
+                            (`rgb(${arrayOfParam[7]},${arrayOfParam[8]},${arrayOfParam[9]});`),
+                            (`rgb(${arrayOfParam[10]},${arrayOfParam[11]},${arrayOfParam[12]});`));
+                        allFigureObjects.push(circle);
+                        break;
                     }
-                case 31:
+                case "31":
                     {
-
+                        let ellipse = new figureClass.Ellipce(arrayOfParam[4], arrayOfParam[5],
+                            arrayOfParam[0], arrayOfParam[1], arrayOfParam[2],
+                            (`rgb(${arrayOfParam[7]},${arrayOfParam[8]},${arrayOfParam[9]});`),
+                            (`rgb(${arrayOfParam[10]},${arrayOfParam[11]},${arrayOfParam[12]});`));
+                        allFigureObjects.push(ellipse);
+                        break;
                     }
-
             }
         }
-        console.log(allFigureObjects);
-
+        // console.log(allFigureObjects);
+        return allFigureObjects;
     }
 
-}
+};
+//xports.allFigureObjects = allFigureObjects;
