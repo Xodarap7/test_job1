@@ -23,10 +23,17 @@ app.use(express.static(__dirname));
 app.use(multer({ storage: storageConfig }).single("figurefile.txt"));
 
 // определяем обработчик для маршрута "/
-app.get("/", function(req, res) {
+app.get("/api/figures", function(req, res){
+
+    const content = allFigureObjects;
+    // const figures = JSON.parse(content);
+    res.send(content);
+    });
+app.get("/figure", function(req, res) {
 
     // отправляем ответ
-    res.sendFile(__dirname + '/html/index.html');;
+    res.sendFile(__dirname + '/html/figures.html');
+    // res.render('/figure', { figures: allFigureObjects })
 });
 app.post("/upload", function(req, res, next) {
 
@@ -40,9 +47,6 @@ app.post("/upload", function(req, res, next) {
 const allFigureObjects = readUserFile.getObjects();
 
 console.log(allFigureObjects);
-
-
-
 
 // начинаем прослушивать подключения на 3000 порту
 app.listen(3000, () => { console.log("Server started"); });
