@@ -1,0 +1,6 @@
+.canvas-container {
+    background: rgb(230, 230, 230);
+    max-width: 95%;
+    min-height: 500px;
+    margin: 2.5% 2.5%;
+}

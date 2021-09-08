@@ -36,8 +36,8 @@ module.exports = {
                     {
                         let rectangle = new figureClass.Rectangle(arrayOfParam[4], arrayOfParam[5],
                             arrayOfParam[0], arrayOfParam[1], arrayOfParam[2],
-                            (`rgb(${arrayOfParam[7]},${arrayOfParam[8]},${arrayOfParam[9]});`),
-                            (`rgb(${arrayOfParam[10]},${arrayOfParam[11]},${arrayOfParam[12]});`));
+                            (`rgb(${arrayOfParam[7]},${arrayOfParam[8]},${arrayOfParam[9]})`),
+                            (`rgb(${arrayOfParam[10]},${arrayOfParam[11]},${arrayOfParam[12]})`));
                         allFigureObjects.push(rectangle);
                         break;
                     }
@@ -45,8 +45,8 @@ module.exports = {
                     {
                         let regularTriangle = new figureClass.RegularTriangle(arrayOfParam[4],
                             arrayOfParam[0], arrayOfParam[1], arrayOfParam[2],
-                            (`rgb(${arrayOfParam[7]},${arrayOfParam[8]},${arrayOfParam[9]});`),
-                            (`rgb(${arrayOfParam[10]},${arrayOfParam[11]},${arrayOfParam[12]});`));
+                            (`rgb(${arrayOfParam[7]},${arrayOfParam[8]},${arrayOfParam[9]})`),
+                            (`rgb(${arrayOfParam[10]},${arrayOfParam[11]},${arrayOfParam[12]})`));
                         allFigureObjects.push(regularTriangle);
                         break;
                     }
@@ -54,8 +54,8 @@ module.exports = {
                     {
                         let rightTriangle = new figureClass.RightTriangle(arrayOfParam[4], arrayOfParam[5],
                             arrayOfParam[0], arrayOfParam[1], arrayOfParam[2],
-                            (`rgb(${arrayOfParam[7]},${arrayOfParam[8]},${arrayOfParam[9]});`),
-                            (`rgb(${arrayOfParam[10]},${arrayOfParam[11]},${arrayOfParam[12]});`));
+                            (`rgb(${arrayOfParam[7]},${arrayOfParam[8]},${arrayOfParam[9]})`),
+                            (`rgb(${arrayOfParam[10]},${arrayOfParam[11]},${arrayOfParam[12]})`));
                         allFigureObjects.push(rightTriangle);
                         break;
                     }
@@ -63,8 +63,8 @@ module.exports = {
                     {
                         let circle = new figureClass.Circle(arrayOfParam[4],
                             arrayOfParam[0], arrayOfParam[1],
-                            (`rgb(${arrayOfParam[7]},${arrayOfParam[8]},${arrayOfParam[9]});`),
-                            (`rgb(${arrayOfParam[10]},${arrayOfParam[11]},${arrayOfParam[12]});`));
+                            (`rgb(${arrayOfParam[7]},${arrayOfParam[8]},${arrayOfParam[9]})`),
+                            (`rgb(${arrayOfParam[10]},${arrayOfParam[11]},${arrayOfParam[12]})`));
                         allFigureObjects.push(circle);
                         break;
                     }
@@ -72,8 +72,8 @@ module.exports = {
                     {
                         let ellipse = new figureClass.Ellipce(arrayOfParam[4], arrayOfParam[5],
                             arrayOfParam[0], arrayOfParam[1], arrayOfParam[2],
-                            (`rgb(${arrayOfParam[7]},${arrayOfParam[8]},${arrayOfParam[9]});`),
-                            (`rgb(${arrayOfParam[10]},${arrayOfParam[11]},${arrayOfParam[12]});`));
+                            (`rgb(${arrayOfParam[7]},${arrayOfParam[8]},${arrayOfParam[9]})`),
+                            (`rgb(${arrayOfParam[10]},${arrayOfParam[11]},${arrayOfParam[12]})`));
                         allFigureObjects.push(ellipse);
                         break;
                     }
