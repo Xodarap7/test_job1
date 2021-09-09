@@ -7,7 +7,15 @@ fetch('http://localhost:3000/api/figures')
         const theDiv = document.querySelector(".canvas-container");
         canvas.width = theDiv.clientWidth;
         canvas.height = theDiv.clientHeight;
+
+        const ctx = canvas.getContext("2d");
+
+        ctx.translate(canvas.width / 2, canvas.height / 2);
         for (let figureObject of allFigureObjects) {
+
+            if (+figureObject.y > canvas.height / 2 || +figureObject.y < -(canvas.height / 2)) {
+                ctx.scale = 0.9;
+            }
             switch (figureObject.typeFigure) {
                 case "10":
                     paintRectangle(figureObject);
@@ -19,7 +27,6 @@ fetch('http://localhost:3000/api/figures')
                     paintRightTriangle(figureObject);
                     break;
                 case "30":
-
                     paintCircle(figureObject);
                     break;
                 case "31":
@@ -31,34 +38,85 @@ fetch('http://localhost:3000/api/figures')
         function paintRectangle(figureObject) {
             const canvas = document.getElementById("canvas");
             const ctx = canvas.getContext("2d");
-            let centerX = figureObject.x - figureObject.width / 2;
-            let centerY = figureObject.y - figureObject.height / 2;
 
+
+
+            ctx.save();
+            ctx.fillStyle = figureObject.bgColour;
+            ctx.strokeStyle = figureObject.conturColour;
+
+
+
+            // translate(+figureObject.x + +figureObject.width / 2, +figureObject.y + +figureObject.height / 2);
+            ctx.rotate(figureObject.angle * Math.PI / 180);
+            // translate(-(+figureObject.x + +figureObject.width / 2), -(+figureObject.y + +figureObject.height / 2));
+            ctx.rect(+figureObject.x, +figureObject.y, +figureObject.width, +figureObject.height)
+
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore()
+
+        }
+
+        function paintRegularTriangle(figureObject) {
+            const ctx = canvas.getContext("2d");
+            ctx.save();
+            let height = +(figureObject.a * (Math.sqrt(3) / 2));
+            ctx.beginPath();
+            ctx.fillStyle = figureObject.bgColour;
+            ctx.strokeStyle = figureObject.conturColour;
+            // ctx.translate(canvas.width / 2, canvas.height / 2 - height / 2);
+            // ctx.translate(canvas.width / 2 + +figureObject.x, canvas.height / 2 + +figureObject.y - height / 2);
+            ctx.translate(+figureObject.x + height / 2, +figureObject.y + height / 2);
+            ctx.rotate(figureObject.angle * Math.PI / 180);
+            ctx.translate(+figureObject.x + height / 2, -(+figureObject.y + height / 2));
+
+
+            ctx.moveTo(+(figureObject.x), +(figureObject.y));
+            ctx.lineTo((+figureObject.x) + (+figureObject.a) / 2, +(figureObject.y) + height);
+            ctx.lineTo((+figureObject.x) - (+figureObject.a) / 2, +(figureObject.y) + height);
+            ctx.moveTo(+(figureObject.x), +(figureObject.y));
+
+            ctx.fill();
+            ctx.stroke();
+            ctx.closePath();
+            ctx.restore()
+        }
+
+        function paintRightTriangle(figureObject) {
+            let ctx = canvas.getContext('2d');
             ctx.save();
             ctx.beginPath();
             ctx.fillStyle = figureObject.bgColour;
             ctx.strokeStyle = figureObject.conturColour;
-            ctx.translate(canvas.width / 2, canvas.height / 2);
-            ctx.rotate(figureObject.angle * Math.PI / 180);
-            ctx.rect(centerX, centerY,
-                figureObject.width, figureObject.height);
+            // ctx.translate(canvas.width / 2 - +figureObject.b / 2, canvas.height / 2 - +figureObject.a / 2);
+            // ctx.rotate(figureObject.angle * Math.PI / 180);
+
+            // let x1=
+            // let x2
+            // let x3=
+            // let x2
+            // let x1=
+            // let x2
+
+
+
+
+            ctx.moveTo(figureObject.x, figureObject.y);
+            ctx.lineTo(figureObject.x, +figureObject.y + +figureObject.a);
+            ctx.lineTo(+figureObject.x + +figureObject.b, +figureObject.y + +figureObject.a);
+            ctx.lineTo(figureObject.x, figureObject.y);
+
             ctx.fill();
             ctx.stroke();
-            ctx.restore();
-        }
-
-        function paintRegularTriangle() {
-
-        }
-
-        function paintRightTriangle() {
-
+            ctx.closePath();
+            ctx.restore()
         }
 
         function paintCircle(figureObject) {
             const ctx = canvas.getContext("2d");
             ctx.save();
-            ctx.translate(canvas.width / 2, canvas.height / 2);
+            // ctx.translate(canvas.width / 2, canvas.height / 2);
             ctx.beginPath();
             ctx.strokeStyle = figureObject.conturColour;
             ctx.lineWidth = 1;
@@ -74,7 +132,7 @@ fetch('http://localhost:3000/api/figures')
         function paintEllipse(figureObject) {
             const ctx = canvas.getContext("2d");
             ctx.save();
-            ctx.translate(canvas.width / 2, canvas.height / 2);
+            // ctx.translate(canvas.width / 2, canvas.height / 2);
             ctx.beginPath();
             ctx.strokeStyle = figureObject.conturColour;
             ctx.ellipse(figureObject.x, figureObject.y,

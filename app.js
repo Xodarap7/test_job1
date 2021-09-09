@@ -5,11 +5,16 @@ const multer = require("multer");
 // создаем объект приложения
 const app = express();
 
+
+
+
+
+
 ///Внешние файлы
 const readUserFile = require("./js/readFile.js");
 
 // let allFigureObjects = readUserFile.allFigureObjects;
-const allFigureObjects = readUserFile.getObjects();
+let allFigureObjects = readUserFile.getObjects();
 
 const storageConfig = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -35,7 +40,7 @@ app.get("/api/figures", function(req, res) {
 });
 
 app.get("/figure", function(req, res) {
-
+    readUserFile.getObjects();
     // отправляем ответ
     res.sendFile(__dirname + '/html/figures.html');
     // res.render('/figure', { figures: allFigureObjects })
@@ -47,9 +52,12 @@ app.post("/upload", function(req, res, next) {
     console.log(figurefile);
     if (!figurefile)
         res.send("Ошибка при загрузке файла");
-    else
-    //res.send("Файл загружен");
+    else {
+        //res.send("Файл загружен");
+
         res.sendFile(__dirname + '/html/filepost.html');
+
+    }
 })
 
 
